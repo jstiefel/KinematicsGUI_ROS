@@ -36,6 +36,7 @@ Just GUI:
 ## Dependencies
 
 ros_qtc_plugin
+
 qt_build
 
 The following dependencies should be replaced by your own:
