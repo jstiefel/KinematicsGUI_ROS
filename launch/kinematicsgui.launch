@@ -1,0 +1,33 @@
+<launch>
+  <node name="thorlabs_x" pkg="tdc_controller" type="tdc_controller" output="screen" >
+  	<rosparam command="load" file="$(find tdc_controller)/config/default.yaml" />
+  	<param name="SerialNumber" type="str" value="xxx" />
+  	<param name="StageType" value="1" />
+  </node>
+  <node name="thorlabs_y" pkg="tdc_controller" type="tdc_controller" output="screen" >
+  	<rosparam command="load" file="$(find tdc_controller)/config/default.yaml" />
+  	<param name="SerialNumber" type="str" value="xxx" />
+  	<param name="StageType" value="1" />
+  </node>
+  <node name="thorlabs_alpha" pkg="tdc_controller" type="tdc_controller" output="screen" >
+  	<rosparam command="load" file="$(find tdc_controller)/config/default.yaml" />
+  	<param name="SerialNumber" type="str" value="xxx" />
+  	<param name="StageType" value="2" />
+  </node>
+  <node name="maxon" pkg="epos2_controller" type="epos2_controller" output="screen" >
+  	<rosparam command="load" file="$(find epos2_controller)/config/default.yaml" />
+  </node>
+  <node name="serial_node1" pkg="rosserial_python" type="serial_node.py" output="screen">
+	<param name="port" value="/dev/ttyACM0" />
+	<param name="baud" value="57600" />
+  </node>
+  <node name="serial_node2" pkg="rosserial_python" type="serial_node.py" output="screen">
+	<param name="port" value="/dev/ttyACM1" />
+	<param name="baud" value="57600" />
+  </node>
+  <node name="gui" pkg="kinematicsgui" type="kinematicsgui" output="screen" required="true">
+  </node>
+  <node name="kinematics_controller" pkg="kinematics_controller" type="kinematics_controller" output="screen" required="true">
+  	<rosparam command="load" file="$(find kinematics_controller)/config/default.yaml" />
+  </node>
+</launch>
